@@ -16,22 +16,28 @@
 <link rel="stylesheet" type="text/css" href="media/css/login.css"
 	media="all">
 <link rel="stylesheet" type="text/css" href="media/css/verify.css">
+	<script type="text/javascript" src="media/layui/layui.js"></script>
 <script type="text/javascript" src="media/js/jquery.min.js"></script>
-
+<script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
+	<style type="text/css">
+		#ip1{
+			color: red;
+		}
+	</style>
 </head>
 <body class="layui-bg-black">
 	<div class="layui-canvs"></div>
 	<div class="layui-layout layui-layout-login">
-		<form action="login.do" method="post">
+		<form class="layui-form">
 			<h1>
 				<strong>滴答办公系统登录</strong> <em>Tick-tock Office System</em>
 			</h1>
 			<div class="layui-user-icon larry-login">
-				<input type="text" placeholder="账号" class="login_txtbx" name="no"
-					value="admin" />
+				<input type="text" placeholder="账号" required lay-verify="required" autocomplete="off" class="login_txtbx" name="no" id="no"
+					 />
 			</div>
 			<div class="layui-pwd-icon larry-login">
-				<input type="password" placeholder="密码" name="pass" value="admin"
+				<input type="password" placeholder="密码" required lay-verify="required|password" autocomplete="off" name="password" id="password"
 					class="login_txtbx" />
 			</div>
 			<input type="hidden" name="ip" id="ip1"> <input type="hidden"
@@ -40,7 +46,7 @@
 				<div id="mpanel4"></div>
 			</div>
 			<div class="layui-submit larry-login">
-				<input type="submit" id="btn1" disabled="disabled" value="立即登陆"
+				<input type="submit" id="btn1" lay-submit="" lay-filter="demo1"  value="立即登陆"
 					class="submit_btn" />
 			</div>
 		</form>
@@ -77,5 +83,46 @@
 			});
 		});
 	</script>
+<script type="text/javascript">
+	//一般直接写在一个js文件中
+	layui.use(['layer', 'form'], function(){
+		var layer = layui.layer, form = layui.form
+
+		//自定义验证规则
+		form.verify({
+
+			/*no: [
+				/^'[A-Za-z0-9]{5}$/
+				,'账号只能为5位字母'
+			],*/
+			password: [
+				/^\d{5}$/
+				,'密码只能为5位数字'
+			]
+
+		});
+
+		//监听提交
+		form.on('submit(demo1)', function(data){
+
+			$.ajax({
+				type:"post",
+				url:"user/login",
+				data:data.field,
+				dataType:"json",
+				success:function (data) {
+					var id = data.info.id;
+					if(data.code == 1){
+						window.location.href="index.html?id="+id;
+					}else{
+						alert(data.info);
+					}
+				}
+			})
+			// 阻止默认的提交
+			return false;
+		})
+	});
+</script>
 </body>
 </html>
