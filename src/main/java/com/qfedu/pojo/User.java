@@ -1,6 +1,8 @@
 package com.qfedu.pojo;
 
 
+import java.util.List;
+
 public class User {
 
     private Integer id;
@@ -9,6 +11,34 @@ public class User {
     private String name;
     private Integer flag;
     private String headphoto;
+    private Role role;
+    private Authority authority;
+    private List<Role> roles;
+
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
+    }
 
     public Integer getId() {
         return id;

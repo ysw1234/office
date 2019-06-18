@@ -22,7 +22,6 @@ public class LoginLogController {
     public Map<String,Object> findLoginLog(Integer page, Integer size){
 
         Map<String,Object> map =  loginLogService.findLoginLog(page);
-        System.out.println(map.size());
         return map;
     }
 

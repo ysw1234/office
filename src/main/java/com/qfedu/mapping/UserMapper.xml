@@ -9,9 +9,25 @@
         <result column="name" property="name"></result>
         <result column="flag" property="flag"></result>
         <result column="headphoto" property="headphoto"></result>
+
+        <association property="authority" resultMap="com.qfedu.dao.AuthorityDao.authorityMap"></association>
+
+        <collection property="roles" ofType="com.qfedu.pojo.Role">
+            <result column="info" property="info"></result>
+        </collection>
     </resultMap>
     
     <select id="findUser" parameterType="com.qfedu.pojo.User" resultMap="userMap">
         select * from t_user where no=#{no} and password=#{password}
     </select>
+
+    <select id="selectAll" resultMap="userMap">
+        select u.id,u.no,u.name,u.flag,r.info from t_user u
+        inner join t_userrole ur
+        on u.id=ur.uid
+        inner join t_role r
+        on r.id=ur.rid
+    </select>
+    
+
 </mapper>

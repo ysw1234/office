@@ -21,7 +21,6 @@ public class LoginLogServiceImpl implements LoginLogService {
 
     @Override
     public Map<String, Object> findLoginLog(Integer page) {
-        System.out.println(page);
         PageHelper.startPage(page,10);
         List<LoginLog> list = loginLogDao.findAll();
         //获取总记录数
