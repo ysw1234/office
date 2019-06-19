@@ -1,23 +1,18 @@
 package com.qfedu.pojo;
 
-import com.qfedu.vo.VOgrade;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 /**
- * Created by Administrator on 2019/6/18 0018.
+ * Created by Administrator on 2019/6/19 0019.
  */
-public class Grade {
+public class Course {
 
     private Integer id;
     private String name;
     private Integer flag;
     private Integer week;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdate;
-    private String location;
-    private Integer cid;
+    private Integer type;
 
     public Integer getId() {
         return id;
@@ -59,19 +54,11 @@ public class Grade {
         this.createdate = createdate;
     }
 
-    public String getLocation() {
-        return location;
+    public Integer getType() {
+        return type;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public Integer getCid() {
-        return cid;
-    }
-
-    public void setCid(Integer cid) {
-        this.cid = cid;
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

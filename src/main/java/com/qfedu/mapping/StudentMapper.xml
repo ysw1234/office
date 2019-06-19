@@ -18,7 +18,7 @@
         <result column="introno" property="introno"></result>
         <result column="createdate" property="createDate"></result>
         <result column="photo" property="photo"></result>
-        <association property="grade" resultMap="com.qfedu.dao.GradeDao.gradeMap"></association>
+        <association property="grade" resultMap="com.qfedu.dao.GradeDao.voMap"></association>
     </resultMap>
 
     <select id="findStuPage" resultMap="studentMap">
