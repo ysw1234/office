@@ -1,6 +1,8 @@
 package com.qfedu.pojo;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Staff {
@@ -13,8 +15,18 @@ public class Staff {
     private String email;
     private String qq;
     private String phone;
-    private Date createDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date createdate;
     private String photo;
+    private Depart depart;
+
+    public Depart getDepart() {
+        return depart;
+    }
+
+    public void setDepart(Depart depart) {
+        this.depart = depart;
+    }
 
     public String getPhoto() {
         return photo;
@@ -88,11 +100,11 @@ public class Staff {
         this.phone = phone;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedate() {
+        return createdate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
     }
 }

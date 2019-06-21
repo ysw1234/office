@@ -11,12 +11,36 @@
         <result column="email" property="email"></result>
         <result column="qq" property="qq"></result>
         <result column="phone" property="phone"></result>
-        <result column="createdate" property="createDate"></result>
+        <result column="createdate" property="createdate"></result>
         <result column="photo" property="photo"></result>
+    <association property="depart" resultMap="com.qfedu.dao.DepartDao.departMap"></association>
     </resultMap>
 
     <select id="findStaff" resultMap="staffMap">
         select * from t_staff
     </select>
 
+    <select id="staffPage" resultMap="staffMap">
+        select s.*,d.name as dname from t_staff s inner join t_depart d on d.id=s.did
+    </select>
+
+    <insert id="addEmps" parameterType="list">
+        insert into t_staff(no, name, did, flag, sex,email,qq,phone,createdate,photo) values
+        <foreach collection="list" item="staff" separator=",">
+            (#{staff.no}, #{staff.name}, #{staff.did}, #{staff.flag}, #{staff.sex}, #{staff.email}, #{staff.qq}, #{staff.phone},#{staff.createdate}, #{staff.photo})
+        </foreach>
+
+    </insert>
+
+    <insert id="updateStaff" parameterType="com.qfedu.pojo.Staff">
+        insert into t_staff(no,name,did,flag,sex,email,qq,phone,createdate,photo) values(#{no},#{name},#{did},#{flag},#{sex},#{email},#{qq},#{phone},#{createdate},#{photo})
+    </insert>
+
+    <update id="upStaff" parameterType="com.qfedu.pojo.Staff">
+        update t_staff set name=#{name},did=#{did},sex=#{sex},email=#{email},phone=#{phone},qq=#{qq},createdate=#{createdate},photo=#{photo} where no=#{no}
+    </update>
+
+    <delete id="deleteStaff" parameterType="string">
+        delete from t_staff where no=#{no}
+    </delete>
 </mapper>

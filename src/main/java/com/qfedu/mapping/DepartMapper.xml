@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.DepartDao">
+    <resultMap id="departMap" type="com.qfedu.pojo.Depart">
+        <id column="id" property="id"></id>
+        <result column="dname" property="dname"></result>
+        <result column="Createtime" property="Createtime"></result>
+        <result column="flag" property="flag"></result>
+    </resultMap>
+
+<select id="findDepart" resultMap="departMap">
+    select d.id,d.name as dname,d.Createtime,d.flag from t_depart d
+</select>
+    
+
+</mapper>

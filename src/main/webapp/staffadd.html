@@ -8,11 +8,12 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="media/layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="media/css/nprogress.css">
 <script type="text/javascript" src="media/js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="layui-container" style="margin-top: 5px">
-		<form class="layui-form" action="staffadd.do" method="post" >
+		<form class="layui-form" action="staff/staffadd.do" method="post" onsubmit="return false">
 			<div class="layui-form-item">
 				<label class="layui-form-label">员工工号</label>
 				<div class="layui-input-block">
@@ -77,7 +78,7 @@
  				 </div>
  			</div>
 			<div class="layui-form-item">
-				<input class="layui-btn"  style="margin-left: 10%"  id="btn1" disabled="disabled" type="submit" value="确认新增">
+				<input class="layui-btn" style="margin-left: 10%" id="btn1" type="submit" value="确认新增">
 			</div>
 		</form>
 	</div>
@@ -97,13 +98,13 @@
 							  //执行实例
 							  var uploadInst = upload.render({
 							    elem: '#upfile' //绑定元素
-							    ,url: 'photoupload.do' //上传接口
+							    ,url: 'staff/photoupload.do' //上传接口
 							    ,done: function(obj){
 							      //上传完毕回调
 							      console.log(obj);
 							      if(obj.code==1000){
-							    	  $("#p1").val(obj.msg);
-								      $("#img1")[0].src="/tickresource/"+obj.msg;
+							    	  $("#p1").val(obj.info);
+								      $("#img1")[0].src=obj.info;
 							      	  $("#btn1").attr("disabled",false);
 							      }else{
 							    	  $("#img1")[0].src="media/images/cw1.jpg";
@@ -134,23 +135,41 @@
 							});
 					initData();
 		});
+	//监听提交
+
+
 		//初始化数据
 		function initData() {
-			$.get("departall.do",null,function(arr){
+			$.get("depart/departall.do",null,function(arr){
 				for(i=0;i<arr.length;i++){
-					$("#cds").append("<option value='"+arr[i].id+"'>"+arr[i].name+"</option>");
+					$("#cds").append("<option value='"+arr[i].id+"'>"+arr[i].dname+"</option>");
 				}
 				form.render("select");
 			});
-			$.get("staffno.do",null,function(obj){
+			/*$.get("staffno.do",null,function(obj){
 				if(obj.msg=='null'){
 					$("#no1").val("qf000001");
 				}else{
 					$("#no1").val(obj.msg+1);
 				}
 				
-			})
+			})*/
 		}
+	</script>
+	<script type="text/javascript">
+		$("form").submit(function () {
+			$.ajax({
+				type:"post",
+				url:"staff/staffadd.do",
+				data:$("form").serialize(),
+				dateType:"json",
+				success:function (date) {
+					if(data.code==1){
+						alert("成功");
+					}
+				}
+			})
+		})
 	</script>
 </body>
 </html>

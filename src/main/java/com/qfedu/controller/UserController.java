@@ -20,9 +20,9 @@ public class UserController {
 
     @RequestMapping("/login")
     public JsonBean login(User user, HttpSession session){
-        //session.setAttribute();
-        User user1 = userService.findUser(user);
 
+        User user1 = userService.findUser(user);
+        session.setAttribute("user",user1);
         return new JsonBean(1,user1);
     }
 
@@ -31,6 +31,13 @@ public class UserController {
         Map<String, Object> map = userService.selectAll(page,limit);
 
         return map;
+    }
+
+    @RequestMapping("/All")
+    public List<User> findAll(){
+        List<User> list = userService.findAll();
+        return list;
+
     }
 
 

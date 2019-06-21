@@ -55,6 +55,8 @@
             <version>1.0</version>
         </dependency>-->
 
+
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -193,6 +195,13 @@
             <version>1.2.5</version>
         </dependency>
 
+        <!--七牛上传-->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>7.2.11</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -215,18 +224,18 @@
         </resources>
         <plugins>
             <!-- tomcat插件 -->
-           <!-- <plugin>
+           <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
-                <configuration>-->
+                <configuration>
 
                     <!-- 针对tomcat7插件，解决get提交方式的中文乱码 -->
-                    <!--<uriEncoding>UTF-8</uriEncoding>
+                    <uriEncoding>UTF-8</uriEncoding>
                     <path>/empsys</path>
                 </configuration>
             </plugin>
--->
+
             <!-- maven中用到的编译插件，指定编译时使用的jdk的版本 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

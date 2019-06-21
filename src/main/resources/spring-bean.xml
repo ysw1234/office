@@ -130,7 +130,7 @@
 		<property name="cookie" ref="rememberMeCookie" />
 	</bean>
 
-	<!-- Shiro过滤器 -->
+	 <!--Shiro过滤器-->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<!-- Shiro的核心安全接口,这个属性是必须的 -->
 		<property name="securityManager" ref="securityManager"/>
@@ -149,8 +149,10 @@
 		<property name="filterChainDefinitions">
 			<value>
 				<!--  anon 匿名访问 -->
-				/login.do=anon
-				/login.jsp=anon
+				/user/login=anon
+				/login.html=anon
+				/media/**=anon
+				/js/**=anon
 
 				<!-- 配置退出的操作 -->
 				/logout.do = logout

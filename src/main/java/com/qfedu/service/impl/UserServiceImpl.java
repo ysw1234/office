@@ -40,7 +40,10 @@ public class UserServiceImpl implements UserService {
         return map;
     }
 
-
+    @Override
+    public List<User> findAll() {
+        return userDao.findAll();
+    }
 
 
 }

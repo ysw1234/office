@@ -16,4 +16,5 @@ public interface UserService {
     Map<String,Object> selectAll(Integer page, Integer limit);
 
 
+    List<User> findAll();
 }

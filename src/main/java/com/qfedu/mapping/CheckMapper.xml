@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.CheckDao">
+    <resultMap id="checkMap" type="com.qfedu.pojo.Check">
+        <id column="id" property="id"></id>
+        <result column="info" property="info"></result>
+        <result column="type" property="type"></result>
+        <result column="startname" property="startname"></result>
+        <result column="startno" property="startno"></result>
+        <result column="startdate" property="startDate"></result>
+        <result column="enddate" property="endDate"></result>
+        <result column="days" property="days"></result>
+        <result column="pid" property="pid"></result>
+        <result column="flag" property="flag"></result>
+        <result column="no" property="no"></result>
+    </resultMap>
+
+
+    <select id="findAll" parameterType="string" resultMap="checkMap">
+        select * from t_check where startno=#{no}
+    </select>
+
+    <select id="findcheck" parameterType="string" resultMap="checkMap">
+        select * from t_check where startno=#{no} and flag=1
+    </select>
+
+    <insert id="addProcess" parameterType="com.qfedu.pojo.Check">
+        insert into t_check(startdate,enddate,days,type,startname,startno,no,pid,flag,info)
+        values(#{startDate},#{endDate},#{days},#{type},#{startname},#{startno},#{no},#{pid},#{flag},#{info})
+    </insert>
+
+    <update id="okPro">
+          update t_check set flag=#{flag} where id=#{id}
+    </update>
+    <update id="noPro">
+        update t_check set flag=#{flag} where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from t_check where id=#{id}
+     </delete>
+
+    <select id="charts" parameterType="int">
+        select * from t_check where id=#{id}
+    </select>
+
+</mapper>

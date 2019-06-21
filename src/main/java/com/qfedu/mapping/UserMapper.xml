@@ -28,6 +28,8 @@
         inner join t_role r
         on r.id=ur.rid
     </select>
-    
+    <select id="findAll" resultMap="userMap">
+        select * from t_user where flag=1
+    </select>
 
 </mapper>
